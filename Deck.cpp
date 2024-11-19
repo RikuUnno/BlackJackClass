@@ -2,19 +2,42 @@
 #include <iostream>
 using namespace std;
 
-Deck::Deck(const int TOTAL_CARDS, int* deck)
+const int TOTAL_CARDS = 52;
+
+Deck::Deck()
 {
-	m_totalCards = TOTAL_CARDS; 
+	m_remainingNum = TOTAL_CARDS;
 
-	InitDeck(deck);
+	p_remainingNum = &m_remainingNum;
 
-	ShuffleDeck(deck);
+	m_deck = new(nothrow) int[TOTAL_CARDS];
+
+	if (m_deck != nullptr)
+	{
+		InitDeck(&m_deck[0]);
+
+		ShuffleDeck(&m_deck[0]);
+	}
+}
+
+int* Deck::GetDeck()
+{
+	if (m_deck != nullptr)
+	{
+		return m_deck;
+	}
+}
+
+int* Deck::GetRemainingNum()
+{
+	
+	return p_remainingNum;
 }
 
 // ïœêîÇÃèâä˙âª
 void Deck::InitDeck(int* deck)
 {
-	for (int i = 0; i < m_totalCards; i++)
+	for (int i = 0; i < TOTAL_CARDS; i++)
 	{
 		deck[i] = i;
 	}
@@ -25,8 +48,9 @@ void Deck::ShuffleDeck(int* deck)
 {
 	int randomIndex = 0;
 
-	for (int i = 0; i < m_totalCards; i++) {
-		randomIndex = rand() % m_totalCards;
+	for (int i = 0; i < TOTAL_CARDS; i++) {
+		randomIndex = rand() % TOTAL_CARDS;
 		swap(deck[i], deck[randomIndex]);
 	}
 }
+

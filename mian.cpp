@@ -1,36 +1,24 @@
-#include <iostream>
+#include <iostream>。
 
 #include "Deck.h"
 #include "Player.h"
 #include "Dealer.h"
+#include "Inheritance.h"
 
 using namespace std;
 
-//カードの総枚数
-const int TOTAL_CARDS = 52;
-
-//バーストチェック
-bool BurstCheck(int scoreTpm)
-{
-	if (scoreTpm > 21)
-	{
-		return true;
-	}
-	return false;
-}
-
 //勝敗
-void Result(int playerScore, int dealerScore)
+void Result(Player* player, Dealer *dealer)
 {
-	if (playerScore == dealerScore)
+	if (player->ScoreGetter() == dealer->ScoreGetter())
 	{
 		cout << "引き分け" << endl;
 	}
-	else if (playerScore < dealerScore)
+	else if (player->ScoreGetter() < dealer->ScoreGetter())
 	{
 		cout << "ディラーの勝ち" << endl;
 	}
-	else if (dealerScore < playerScore)
+	else if (player->ScoreGetter() > dealer->ScoreGetter())
 	{
 		cout << "プレイヤーの勝ち" << endl;
 	}
@@ -41,22 +29,16 @@ int main()
 	//乱数の初期化
 	srand((unsigned int)time(NULL));
 
-	int deck[TOTAL_CARDS]; // トランプの保管配列
-	int remainingNum = TOTAL_CARDS; //残りの枚数
-	int playerHand[10], dealerHand[10]; //プレイヤーとディーラーのカードを保管する変数
-	int playerScore = 0, dealerScore = 0; //プレイヤーとディーラーの点数を保管する変数
-
 	//カードのシャッフルと各クラスの宣言
-	Deck deckClass(TOTAL_CARDS, deck);
+	Deck deck;
 	Player player;
 	Dealer dealer;
 
-
 	//プレイヤーのターン
-	player.PlayerTurn(deck, remainingNum, playerHand, playerScore);
+	player.PlayerTurn(deck.GetDeck(), deck.GetRemainingNum());
 	
-	//scoreTpmがバーストしていれば
-	if (BurstCheck(playerScore))
+	//バーストチェック
+	if (player.BurstCheck())
 	{
 		cout << "バーストしました。あなたの負けです。" << endl;
 		return 0;
@@ -66,16 +48,16 @@ int main()
 	cout << "ディラーのターン" << endl;
 	
 	// ディラーのターン
-	dealer.DealerTurn(deck, remainingNum, dealerHand, dealerScore);
+	dealer.DealerTurn(deck.GetDeck(), deck.GetRemainingNum());
 
-	//scoreTpmがバーストしていれば
-	if (BurstCheck(dealerScore))
+	//バーストチェック
+	if (dealer.BurstCheck())
 	{
 		cout << "バーストしました。ディラーの負けです。" << endl;
 		return 0;
 	}
 
 	//勝敗
-	Result(playerScore, dealerScore);
+	Result(&player, &dealer);
 
 }

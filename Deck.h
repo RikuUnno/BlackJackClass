@@ -3,8 +3,6 @@
 class Deck
 {
 private:
-	int m_totalCards;
-
 	// 変数の初期化
 	void InitDeck(int* deck);
 
@@ -12,6 +10,14 @@ private:
 	void ShuffleDeck(int* deck);
 public:
 	//コンストラクタ
-	Deck(const int TOTAL_CARDS, int* deck);
+	Deck();
 
+public:
+	int* GetDeck();
+	int* GetRemainingNum();
+
+private:
+	int* m_deck; // トランプの保管配列
+	int m_remainingNum; //残りの枚数
+	int* p_remainingNum; //m_remainingNumのポインタ
 };

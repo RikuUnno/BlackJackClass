@@ -6,7 +6,7 @@
 using namespace std;
 
 //プレイヤーのターン関数
-void Player::PlayerTurn(int* deck, int& remainingNum, int* playerHand, int& scoreTpm)
+void Player::PlayerTurn(int* deck, int* remainingNum)
 {
 	char keyCh; // キーの入力用
 	int card = 0; // 引いたトランプの一時的な保管用変数
@@ -18,13 +18,13 @@ void Player::PlayerTurn(int* deck, int& remainingNum, int* playerHand, int& scor
 		card = DrawCard(deck, remainingNum);
 		if (card != -1)
 		{
-			playerHand[handSize++] = card;
+			m_hand[handSize++] = card;
 			ShowCard(card);
 		}
 	}
 
 	// プレイヤーのターン
-	int score = CalculatingPoints(playerHand, handSize);
+	int score = CalculatingPoints(m_hand, handSize);
 	cout << "あなたの現在のスコア: " << score << endl;
 
 	while (score < 21)
@@ -39,9 +39,9 @@ void Player::PlayerTurn(int* deck, int& remainingNum, int* playerHand, int& scor
 			// 上記の関数の戻り値を使ってエラーチェック
 			if (card != -1)
 			{
-				playerHand[handSize++] = card;
+				m_hand[handSize++] = card;
 				ShowCard(card);
-				score = CalculatingPoints(playerHand, handSize);
+				score = CalculatingPoints(m_hand, handSize);
 				cout << "あなたの現在のスコア: " << score << endl;
 			}
 		}
@@ -51,5 +51,10 @@ void Player::PlayerTurn(int* deck, int& remainingNum, int* playerHand, int& scor
 		}
 	}
 
-	scoreTpm = score;
+	m_score = score;
+}
+
+int Player::ScoreGetter() const
+{
+	return m_score;
 }

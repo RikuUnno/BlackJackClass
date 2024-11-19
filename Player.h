@@ -1,10 +1,16 @@
 #pragma once
 #include "Inheritance.h"
+#include "Deck.h"
 
 class Player:
-	Inheritance	
+	public Inheritance	
 {
+
 public:
 	//プレイヤーのターン関数
-	void PlayerTurn(int* deck, int& remainingNum, int* playerHand, int& scoreTpm);
+	void PlayerTurn(int* Deck, int* remainingNum);
+
+	//スコアゲッター
+	int ScoreGetter() const;
+
 };

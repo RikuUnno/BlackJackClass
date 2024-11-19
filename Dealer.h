@@ -2,9 +2,12 @@
 #include "Inheritance.h"
 
 class Dealer :
-	Inheritance
+	public Inheritance
 {
 public:
 	//ディラーのターン関数
-	void DealerTurn(int* deck, int& remainingNum, int* dealerHand, int& scoreTpm);
+	void DealerTurn(int* deck, int* remainingNum);
+
+	//スコアゲッター
+	int ScoreGetter() const;
 };

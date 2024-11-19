@@ -5,7 +5,7 @@
 using namespace std;
 
 //ディラーのターン関数
-void Dealer::DealerTurn(int* deck, int& remainingNum, int* dealerHand, int& scoreTpm)
+void Dealer::DealerTurn(int* deck, int* remainingNum)
 {
 	int card = 0; // 引いたトランプの一時的な保管用変数
 	int handSize = 0;
@@ -16,13 +16,13 @@ void Dealer::DealerTurn(int* deck, int& remainingNum, int* dealerHand, int& scor
 		card = DrawCard(deck, remainingNum);
 		if (card != -1)
 		{
-			dealerHand[handSize++] = card;
+			m_hand[handSize++] = card;
 			ShowCard(card);
 		}
 	}
 
 	// ディラーのターン
-	int score = CalculatingPoints(dealerHand, handSize);
+	int score = CalculatingPoints(m_hand, handSize);
 	cout << "ディラーの現在のスコア: " << score << endl;
 
 	while (score < 21)
@@ -33,9 +33,9 @@ void Dealer::DealerTurn(int* deck, int& remainingNum, int* dealerHand, int& scor
 			// 上記の関数の戻り値を使ってエラーチェック
 			if (card != -1)
 			{
-				dealerHand[handSize++] = card;
+				m_hand[handSize++] = card;
 				ShowCard(card);
-				score = CalculatingPoints(dealerHand, handSize);
+				score = CalculatingPoints(m_hand, handSize);
 				cout << "ディラーの現在のスコア: " << score << endl;
 			}
 		}
@@ -45,5 +45,11 @@ void Dealer::DealerTurn(int* deck, int& remainingNum, int* dealerHand, int& scor
 		}
 	}
 
-	scoreTpm = score;
+	m_score = score;
+}
+
+//スコアゲッター
+int Dealer::ScoreGetter() const
+{
+	return m_score;
 }
