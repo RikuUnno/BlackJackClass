@@ -6,7 +6,7 @@
 using namespace std;
 
 //プレイヤーのターン関数
-void Player::PlayerTurn(int* deck, int* remainingNum)
+void Player::PlayerTurn(Deck& deck)
 {
 	char keyCh; // キーの入力用
 	int card = 0; // 引いたトランプの一時的な保管用変数
@@ -15,7 +15,8 @@ void Player::PlayerTurn(int* deck, int* remainingNum)
 	// 最初の2枚を引く
 	for (int i = 0; i < 2; i++)
 	{
-		card = DrawCard(deck, remainingNum);
+		//引数をデッキクラスの参照渡しに変更
+		card = DrawCard(deck);
 		if (card != -1)
 		{
 			m_hand[handSize++] = card;
@@ -35,7 +36,8 @@ void Player::PlayerTurn(int* deck, int* remainingNum)
 
 		if (keyCh == 'h' || keyCh == 'H') // ヒットの場合
 		{
-			card = DrawCard(deck, remainingNum);
+			//引数をデッキクラスの参照渡しに変更
+			card = DrawCard(deck);
 			// 上記の関数の戻り値を使ってエラーチェック
 			if (card != -1)
 			{

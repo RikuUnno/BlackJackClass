@@ -3,7 +3,6 @@
 #include "Deck.h"
 #include "Player.h"
 #include "Dealer.h"
-#include "Person.h"
 
 using namespace std;
 
@@ -35,7 +34,7 @@ int main()
 	Dealer dealer;
 
 	//プレイヤーのターン
-	player.PlayerTurn(deck.GetDeck(), deck.GetRemainingNum());
+	player.PlayerTurn(deck);
 	
 	//バーストチェック
 	if (player.BurstCheck())
@@ -48,7 +47,7 @@ int main()
 	cout << "ディラーのターン" << endl;
 	
 	// ディラーのターン
-	dealer.DealerTurn(deck.GetDeck(), deck.GetRemainingNum());
+	dealer.DealerTurn(deck);
 
 	//バーストチェック
 	if (dealer.BurstCheck())

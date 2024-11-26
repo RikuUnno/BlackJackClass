@@ -36,22 +36,36 @@ Person::~Person()
 	}
 }
 
-
-//カードのドロー
-int Person::DrawCard(int* deck, int* remainingNum)
+//コピーコンストラクタと代入演算子のオーバーロードの追加
+//コピーコンストラクタ
+Person::Person(const Person& other)
 {
-	int card = 0;
-
-	// カードのエラーチェック
-	if (*remainingNum <= 0)
+	m_score = other.m_score;
+	m_hand = new(nothrow) int[10];
+	if (m_hand != nullptr)
 	{
-		cout << "カードがありません " << endl;
-		return -1;
+		copy(other.m_hand, other.m_hand + 10, m_hand);
 	}
+}
 
-	card = deck[*remainingNum - 1]; //残りの枚数の最後のカードを引く
-	*remainingNum -= sizeof(remainingNum); //カードを一枚引く（sizeofでポインタのサイズ分引く）
-	return card;
+//代入演算子のオーバーロード
+void Person::operator=(const Person& other)
+{
+	m_score = other.m_score;
+
+	delete[] m_hand;
+	m_hand = new(nothrow) int[10];
+	if (m_hand != nullptr)
+	{
+		copy(other.m_hand, other.m_hand + 10, m_hand);
+	}
+}
+
+//デッキクラスを参照してカードのドローに変更
+//カードのドロー
+int Person::DrawCard(Deck& deck)
+{
+	return deck.PullDeck();
 }
 
 //表示関数

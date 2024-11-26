@@ -1,4 +1,5 @@
 #pragma once
+#include "Deck.h"
 
 class Person
 {
@@ -9,9 +10,17 @@ public:
 	//デストラクタ
 	~Person();
 
+	//コピーコンストラクタと代入演算子のオーバーロードの追加
+	//コピーコンストラクタ
+	Person(const Person& other);
+
+	//代入演算子のオーバーロード
+	void operator=(const Person& other);
+
 public:
+	//デッキクラスを参照してカードのドローに変更
 	//カードのドロー
-	int DrawCard(int* deck, int* remainingNum);
+	int DrawCard(Deck& deck);
 
 	//バーストチェック
 	bool BurstCheck() const;

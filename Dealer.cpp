@@ -5,7 +5,7 @@
 using namespace std;
 
 //ディラーのターン関数
-void Dealer::DealerTurn(int* deck, int* remainingNum)
+void Dealer::DealerTurn(Deck& deck)
 {
 	int card = 0; // 引いたトランプの一時的な保管用変数
 	int handSize = 0;
@@ -13,7 +13,8 @@ void Dealer::DealerTurn(int* deck, int* remainingNum)
 	// 最初の2枚を引く
 	for (int i = 0; i < 2; i++)
 	{
-		card = DrawCard(deck, remainingNum);
+		//引数をデッキクラスの参照渡しに変更
+		card = DrawCard(deck);
 		if (card != -1)
 		{
 			m_hand[handSize++] = card;
@@ -29,7 +30,7 @@ void Dealer::DealerTurn(int* deck, int* remainingNum)
 	{
 		if (score < 17) // ヒットの場合
 		{
-			card = DrawCard(deck, remainingNum);
+			card = DrawCard(deck);
 			// 上記の関数の戻り値を使ってエラーチェック
 			if (card != -1)
 			{

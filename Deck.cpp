@@ -9,51 +9,88 @@ Deck::Deck()
 {
 	m_remainingNum = TOTAL_CARDS;
 
-	p_remainingNum = &m_remainingNum;
+	m_deck = new(nothrow) int[TOTAL_CARDS];
+
+	if (m_deck != nullptr)
+	{
+		InitDeck();
+
+		ShuffleDeck();
+	}
+}
+
+//デストラクタ
+Deck::~Deck()
+{
+	if (m_deck != nullptr)
+	{
+		delete[] m_deck;
+		m_deck = nullptr;
+	}
+}
+
+//コピーコンストラクタと代入演算子のオーバーロードの追加
+//コピーコンストラクタ
+Deck::Deck(const Deck& other)
+{
+	m_remainingNum = other.m_remainingNum;
 
 	m_deck = new(nothrow) int[TOTAL_CARDS];
 
 	if (m_deck != nullptr)
 	{
-		InitDeck(&m_deck[0]);
-
-		ShuffleDeck(&m_deck[0]);
+		copy(other.m_deck, other.m_deck + TOTAL_CARDS, m_deck);
 	}
 }
 
-//Deckのゲッター
-int* Deck::GetDeck()
+//代入演算子のオーバーロード
+void Deck::operator=(const Deck& other)
 {
+	m_remainingNum = other.m_remainingNum;
+
+	delete[] m_deck;
+	m_deck = new(nothrow) int[TOTAL_CARDS];
 	if (m_deck != nullptr)
 	{
-		return m_deck;
+		copy(other.m_deck, other.m_deck + TOTAL_CARDS, m_deck);
 	}
 }
 
-//m__remainingNumのゲッター
-int* Deck::GetRemainingNum()
+//カードのドロー
+int Deck::PullDeck()
 {
-	
-	return p_remainingNum;
+	int card = 0;
+
+	// カードのエラーチェック
+	if (m_remainingNum <= 0)
+	{
+		cout << "カードがありません " << endl;
+		return -1;
+	}
+
+	card = m_deck[m_remainingNum - 1]; //残りの枚数の最後のカードを引く
+	m_remainingNum--; //カードを一枚引く
+	return card;
 }
 
 // 変数の初期化
-void Deck::InitDeck(int* deck)
+void Deck::InitDeck()
 {
 	for (int i = 0; i < TOTAL_CARDS; i++)
 	{
-		deck[i] = i;
+		m_deck[i] = i;
 	}
 }
 
+//シャッフルメソッドのアルゴリズム変更
 // デッキのシャッフル
-void Deck::ShuffleDeck(int* deck)
+void Deck::ShuffleDeck()
 {
 	int randomIndex = 0;
 
-	for (int i = 0; i < TOTAL_CARDS; i++) {
-		randomIndex = rand() % TOTAL_CARDS;
-		swap(deck[i], deck[randomIndex]);
+	for (int i = TOTAL_CARDS-1; i > 0; i--) {
+		randomIndex = rand() % (i);
+		swap(m_deck[i], m_deck[randomIndex]);
 	}
 }
 
