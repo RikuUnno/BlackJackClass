@@ -122,3 +122,4 @@ bool Person::BurstCheck() const
 	}
 	return false;
 }
+
