@@ -54,6 +54,7 @@ void Player::PlayerTurn(int* deck, int* remainingNum)
 	m_score = score;
 }
 
+//スコアゲッタ―
 int Player::ScoreGetter() const
 {
 	return m_score;

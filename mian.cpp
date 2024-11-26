@@ -3,7 +3,7 @@
 #include "Deck.h"
 #include "Player.h"
 #include "Dealer.h"
-#include "Inheritance.h"
+#include "Person.h"
 
 using namespace std;
 

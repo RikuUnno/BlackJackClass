@@ -1,13 +1,13 @@
 #pragma once
 
-class Inheritance
+class Person
 {
 public:
 	//コンストラクタ
-	Inheritance();
+	Person();
 
 	//デストラクタ
-	~Inheritance();
+	~Person();
 
 public:
 	//カードのドロー

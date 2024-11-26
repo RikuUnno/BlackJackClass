@@ -1,4 +1,4 @@
-#include "Inheritance.h"
+#include "Person.h"
 #include "Deck.h"
 #include <iostream>
 
@@ -14,7 +14,8 @@ const char* RANKP_NUM[] = {
 	"1", "2", "3", "4","5", "6", "7", "8", "9", "10", "11", "12", "13"
 };
 
-Inheritance::Inheritance()
+//コンストラクタ
+Person::Person()
 {
 	m_score = 10;
 	m_hand = new(nothrow) int[10];
@@ -26,7 +27,8 @@ Inheritance::Inheritance()
 	}
 }
 
-Inheritance::~Inheritance()
+//デストラクタ
+Person::~Person()
 {
 	if (m_hand != nullptr) {
 		delete[] m_hand;
@@ -36,7 +38,7 @@ Inheritance::~Inheritance()
 
 
 //カードのドロー
-int Inheritance::DrawCard(int* deck, int* remainingNum)
+int Person::DrawCard(int* deck, int* remainingNum)
 {
 	int card = 0;
 
@@ -47,14 +49,13 @@ int Inheritance::DrawCard(int* deck, int* remainingNum)
 		return -1;
 	}
 
-	// 
 	card = deck[*remainingNum - 1]; //残りの枚数の最後のカードを引く
-	*remainingNum -= sizeof(remainingNum); //カードを一枚引く
+	*remainingNum -= sizeof(remainingNum); //カードを一枚引く（sizeofでポインタのサイズ分引く）
 	return card;
 }
 
 //表示関数
-void Inheritance::ShowCard(int card) const
+void Person::ShowCard(int card) const
 {
 	int suit, rank;
 
@@ -64,7 +65,7 @@ void Inheritance::ShowCard(int card) const
 }
 
 //スコアの計算
-int Inheritance::CalculatingPoints(int* handArray, int& handSize)
+int Person::CalculatingPoints(int* handArray, int& handSize)
 {
 	int totalScore = 0;
 	int aceCount = 0;
@@ -98,7 +99,7 @@ int Inheritance::CalculatingPoints(int* handArray, int& handSize)
 }
 
 //バーストチェック
-bool Inheritance::BurstCheck() const
+bool Person::BurstCheck() const
 {
 	if (m_score > 21)
 	{

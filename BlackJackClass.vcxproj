@@ -129,14 +129,14 @@
   <ItemGroup>
     <ClCompile Include="Dealer.cpp" />
     <ClCompile Include="Deck.cpp" />
-    <ClCompile Include="Inheritance.cpp" />
+    <ClCompile Include="Person.cpp" />
     <ClCompile Include="mian.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dealer.h" />
     <ClInclude Include="Deck.h" />
-    <ClInclude Include="Inheritance.h" />
+    <ClInclude Include="Person.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -13,7 +13,9 @@ public:
 	Deck();
 
 public:
+	//Deckのゲッター
 	int* GetDeck();
+	//m__remainingNumのゲッター
 	int* GetRemainingNum();
 
 private:

@@ -4,6 +4,7 @@ using namespace std;
 
 const int TOTAL_CARDS = 52;
 
+//コンストラクタ
 Deck::Deck()
 {
 	m_remainingNum = TOTAL_CARDS;
@@ -20,6 +21,7 @@ Deck::Deck()
 	}
 }
 
+//Deckのゲッター
 int* Deck::GetDeck()
 {
 	if (m_deck != nullptr)
@@ -28,6 +30,7 @@ int* Deck::GetDeck()
 	}
 }
 
+//m__remainingNumのゲッター
 int* Deck::GetRemainingNum()
 {
 	

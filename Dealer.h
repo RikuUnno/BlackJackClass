@@ -1,8 +1,8 @@
 #pragma once
-#include "Inheritance.h"
+#include "Person.h"
 
 class Dealer :
-	public Inheritance
+	public Person
 {
 public:
 	//ディラーのターン関数
