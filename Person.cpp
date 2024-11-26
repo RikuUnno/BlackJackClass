@@ -65,6 +65,7 @@ void Person::operator=(const Person& other)
 //カードのドロー
 int Person::DrawCard(Deck& deck)
 {
+	//Deckクラスのメソッドの戻り値を使ってカードをドロー
 	return deck.PullDeck();
 }
 
