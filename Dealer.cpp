@@ -23,7 +23,7 @@ void Dealer::DealerTurn(Deck& deck)
 	}
 
 	// ディラーのターン
-	int score = CalculatingPoints(m_hand, handSize);
+	int score = CalculatingPoints(handSize);
 	cout << "ディラーの現在のスコア: " << score << endl;
 
 	while (score < 21)
@@ -36,7 +36,7 @@ void Dealer::DealerTurn(Deck& deck)
 			{
 				m_hand[handSize++] = card;
 				ShowCard(card);
-				score = CalculatingPoints(m_hand, handSize);
+				score = CalculatingPoints(handSize);
 				cout << "ディラーの現在のスコア: " << score << endl;
 			}
 		}
@@ -45,12 +45,6 @@ void Dealer::DealerTurn(Deck& deck)
 			break;
 		}
 	}
-
-	m_score = score;
 }
 
-//スコアゲッター
-int Dealer::ScoreGetter() const
-{
-	return m_score;
-}
+//スコアゲッターの削除

@@ -25,7 +25,7 @@ void Player::PlayerTurn(Deck& deck)
 	}
 
 	// プレイヤーのターン
-	int score = CalculatingPoints(m_hand, handSize);
+	int score = CalculatingPoints(handSize);
 	cout << "あなたの現在のスコア: " << score << endl;
 
 	while (score < 21)
@@ -43,7 +43,7 @@ void Player::PlayerTurn(Deck& deck)
 			{
 				m_hand[handSize++] = card;
 				ShowCard(card);
-				score = CalculatingPoints(m_hand, handSize);
+				score = CalculatingPoints(handSize);
 				cout << "あなたの現在のスコア: " << score << endl;
 			}
 		}
@@ -52,12 +52,6 @@ void Player::PlayerTurn(Deck& deck)
 			break;
 		}
 	}
-
-	m_score = score;
 }
 
-//スコアゲッタ―
-int Player::ScoreGetter() const
-{
-	return m_score;
-}
+//スコアゲッタ―の削除

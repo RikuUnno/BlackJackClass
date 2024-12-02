@@ -80,7 +80,7 @@ void Person::ShowCard(int card) const
 }
 
 //スコアの計算
-int Person::CalculatingPoints(int* handArray, int& handSize)
+int Person::CalculatingPoints(int& handSize)
 {
 	int totalScore = 0;
 	int aceCount = 0;
@@ -89,7 +89,7 @@ int Person::CalculatingPoints(int* handArray, int& handSize)
 
 	// 各カードのスコアを加算
 	for (int i = 0; i < handSize; i++) {
-		card = handArray[i];
+		card = m_hand[i];
 		rank = card % 13;  // ランクを計算
 
 		if (rank == 0) {  // Aの場合
@@ -110,6 +110,7 @@ int Person::CalculatingPoints(int* handArray, int& handSize)
 		aceCount--;
 	}
 
+	m_score = totalScore;
 	return totalScore;
 }
 
@@ -123,3 +124,7 @@ bool Person::BurstCheck() const
 	return false;
 }
 
+int Person::GetScore()
+{
+	return m_score;
+}

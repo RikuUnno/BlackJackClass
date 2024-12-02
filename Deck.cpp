@@ -88,9 +88,8 @@ void Deck::ShuffleDeck()
 {
 	int randomIndex = 0;
 
-	for (int i = TOTAL_CARDS-1; i > 0; i--) {
-		randomIndex = rand() % (i);
+	for (int i = TOTAL_CARDS - 1; i > 0; i--) {
+		randomIndex = rand() % i;
 		swap(m_deck[i], m_deck[randomIndex]);
 	}
 }
-

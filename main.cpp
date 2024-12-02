@@ -9,15 +9,15 @@ using namespace std;
 //勝敗
 void Result(Player* player, Dealer *dealer)
 {
-	if (player->ScoreGetter() == dealer->ScoreGetter())
+	if (player->GetScore() == dealer->GetScore())
 	{
 		cout << "引き分け" << endl;
 	}
-	else if (player->ScoreGetter() < dealer->ScoreGetter())
+	else if (player->GetScore() < dealer->GetScore())
 	{
 		cout << "ディラーの勝ち" << endl;
 	}
-	else if (player->ScoreGetter() > dealer->ScoreGetter())
+	else if (player->GetScore() > dealer->GetScore())
 	{
 		cout << "プレイヤーの勝ち" << endl;
 	}

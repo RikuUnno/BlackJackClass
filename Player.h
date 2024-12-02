@@ -10,7 +10,5 @@ public:
 	//プレイヤーのターン関数
 	void PlayerTurn(Deck& deck);
 
-	//スコアゲッター
-	int ScoreGetter() const;
-
+	//スコアゲッターの削除
 };

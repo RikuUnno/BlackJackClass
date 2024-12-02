@@ -25,12 +25,15 @@ public:
 	//バーストチェック
 	bool BurstCheck() const;
 
+	//Getscoerの追加
+	int GetScore();
+
 protected:
 	//表示関数
 	void ShowCard(int card) const;
 
 	//スコアの計算
-	int CalculatingPoints(int* handArray, int& handSize);
+	int CalculatingPoints(int& handSize);
 
 protected:
 	int* m_hand; //プレイヤーとディーラーのカードを保管する変数

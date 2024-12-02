@@ -10,6 +10,5 @@ public:
 	//ディラーのターン関数
 	void DealerTurn(Deck& deck);
 
-	//スコアゲッター
-	int ScoreGetter() const;
+	//スコアゲッターの削除
 };
