@@ -33,11 +33,14 @@ int main()
 	Player player;
 	Dealer dealer;
 
+	Person& p_person = player;
+	Person& d_person = dealer;
+
 	//プレイヤーのターン
 	player.PlayerTurn(deck);
 	
 	//バーストチェック
-	if (player.BurstCheck())
+	if (p_person.BurstCheck())
 	{
 		cout << "バーストしました。あなたの負けです。" << endl;
 		return 0;
@@ -50,7 +53,7 @@ int main()
 	dealer.DealerTurn(deck);
 
 	//バーストチェック
-	if (dealer.BurstCheck())
+	if (d_person.BurstCheck())
 	{
 		cout << "バーストしました。ディラーの負けです。" << endl;
 		return 0;
